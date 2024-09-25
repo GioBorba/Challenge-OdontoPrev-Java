@@ -40,6 +40,7 @@ public class UsuarioService {
         dto.setId(usuario.getId());
         dto.setNome(usuario.getNome());
         dto.setEmail(usuario.getEmail());
+        dto.setSenha(usuario.getSenha());
         return dto;
     }
 
@@ -47,6 +48,8 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
+        usuario.setSenha(dto.getSenha());
+
         return usuario;
     }
 }

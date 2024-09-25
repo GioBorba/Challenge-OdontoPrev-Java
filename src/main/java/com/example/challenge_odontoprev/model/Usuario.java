@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -34,4 +35,7 @@ public class Usuario {
     @NotBlank(message = "A senha é obrigatória")
     @Size(min = 5, message = "A senha deve ter no mínimo 5 caracteres")
     private String senha;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Consulta> consultas;
 }

@@ -16,7 +16,7 @@ public class Consulta {
     @Column(name ="id", nullable = false)
     private UUID id;
 
-    @Column(name="nome")
+    @Column(name="nome", nullable = false)
     private String nome;
 
     @Column(name ="data", nullable = false)
@@ -32,15 +32,7 @@ public class Consulta {
     private Usuario usuario;
 
 
-    // Se usuario nao definir nome da consulta registrada
-    // Define o nome da consulta
-    // como o nome do primeiro tratamento selecionado
-    @PrePersist
-    public void prePersist() {
-        if (tratamentos != null && !tratamentos.isEmpty()) {
-            this.nome = tratamentos.get(0).getNome();
-        }
-    }
+
 
 
 

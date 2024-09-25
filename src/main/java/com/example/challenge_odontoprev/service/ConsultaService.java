@@ -4,7 +4,9 @@ import com.example.challenge_odontoprev.dto.ConsultaDTO;
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
 import com.example.challenge_odontoprev.model.Consulta;
 import com.example.challenge_odontoprev.model.Tratamento;
+import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.repository.ConsultaRepository;
+import com.example.challenge_odontoprev.repository.UsuarioRepository; // Adicionado para buscar o usuário
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class ConsultaService {
     private final ConsultaRepository consultaRepository;
+    private final UsuarioRepository usuarioRepository; // Adicionando o repositório de usuário
 
     public ConsultaDTO saveConsulta(ConsultaDTO consultaDTO) {
         Consulta consulta = toEntity(consultaDTO);
@@ -71,6 +74,27 @@ public class ConsultaService {
         Consulta consulta = new Consulta();
         consulta.setNome(dto.getNome());
         consulta.setData(dto.getData());
+
+        // Buscar o usuário existente no banco de dados
+        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + dto.getUsuarioId()));
+        consulta.setUsuario(usuario);
+
+
+        if (dto.getTratamentos() != null) {
+            List<Tratamento> tratamentos = dto.getTratamentos().stream()
+                    .map(this::toTratamentoEntity)
+                    .collect(Collectors.toList());
+            consulta.setTratamentos(tratamentos);
+        }
+
         return consulta;
+    }
+
+    private Tratamento toTratamentoEntity(TratamentoDTO dto) {
+        Tratamento tratamento = new Tratamento();
+        tratamento.setId(dto.getId());
+        tratamento.setNome(dto.getNome());
+        return tratamento;
     }
 }
