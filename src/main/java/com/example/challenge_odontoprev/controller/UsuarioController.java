@@ -1,6 +1,7 @@
 package com.example.challenge_odontoprev.controller;
 
 import com.example.challenge_odontoprev.dto.UsuarioDTO;
+import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.service.UsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,12 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable UUID id) {
         Optional<UsuarioDTO> usuario = usuarioService.getUsuarioById(id);
         return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/tratamento/{tratamentoNome}")
+    public ResponseEntity<List<Usuario>> getUsuariosByTratamento(@PathVariable String tratamentoNome) {
+        List<Usuario> usuarios = usuarioService.getUsuariosByTratamento(tratamentoNome);
+        return ResponseEntity.ok(usuarios);
     }
 
     @DeleteMapping("/{id}")

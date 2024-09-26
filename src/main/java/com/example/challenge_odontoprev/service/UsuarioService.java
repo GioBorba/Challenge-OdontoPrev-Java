@@ -4,7 +4,9 @@ import com.example.challenge_odontoprev.dto.UsuarioDTO;
 import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +18,9 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     public UsuarioDTO saveUsuario(UsuarioDTO usuarioDTO) {
+        if (usuarioRepository.existsByEmail(usuarioDTO.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O e-mail já está em uso.");
+        }
         Usuario usuario = toEntity(usuarioDTO);
         Usuario savedUsuario = usuarioRepository.save(usuario);
         return toDto(savedUsuario);
@@ -51,5 +56,9 @@ public class UsuarioService {
         usuario.setSenha(dto.getSenha());
 
         return usuario;
+    }
+
+    public List<Usuario> getUsuariosByTratamento(String tratamentoNome) {
+        return usuarioRepository.findByTratamento(tratamentoNome);
     }
 }

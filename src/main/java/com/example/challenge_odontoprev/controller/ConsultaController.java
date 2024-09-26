@@ -48,4 +48,7 @@ public class ConsultaController {
         return ResponseEntity.ok(consultas);
     }
 
+
+
+
 }
