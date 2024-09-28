@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "ff790479-165d-4d53-a788-ba3577a06a68",
+		"name": "Challenge - OdontoPrev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37872208"
+	},
+	"item": [
+		{
+			"name": "CREATING USUARIO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Lucas\",\r\n    \"email\": \"alex.vermelho@example.com\",\r\n    \"senha\": \"senhaSafe4220\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATING TRATAMENTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"Tártaro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tratamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tratamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATING CONSULTA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Tártaro\",\r\n    \"data\": \"2024-09-03T20:30:00\", \r\n    \"tratamentos\": [\r\n        {\r\n            \"id\": \"5e98f5b6-d4ca-47d0-96b3-e382542c8038\",\r\n            \"nome\" : \"Tártaro\"\r\n\r\n        }\r\n    ],\r\n    \"usuarioId\": \"d9833d7c-4203-4034-81f2-c7f1c70eafd7\" \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/consultas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consultas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIOS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TRATAMENTOS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tratamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tratamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONSULTAS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/consultas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consultas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CONSULTAS POR ID USUARIO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/consultas/usuario/f4bad87c-bb4a-46a0-a792-74f21fd4f0f0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consultas",
+						"usuario",
+						"f4bad87c-bb4a-46a0-a792-74f21fd4f0f0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
