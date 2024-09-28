@@ -4,7 +4,7 @@
 
 ## Integrantes e Responsabilidades
 
-### Eduardo Rodrigues (RM 553705)
+### Eduardo Rodrigues (RM553705)
 - **Responsabilidade**:
   - Disruptive Architectures: IoT, IOB & Generative AI
   - Mobile Development Application
@@ -13,7 +13,7 @@
   - Implementação de recursos de IoT no aplicativo.
   - Integração de inteligência artificial generativa para melhorar a experiência do usuário.
 
-### Giovani Borba (RM 553724)
+### Giovani Borba (RM553724)
 - **Responsabilidade**:
   - Java Advanced
   - Compliance & Quality Assurance
@@ -23,7 +23,7 @@
   - Implementação da gestão de banco de dados usando Oracle.
   - Garantia de conformidade e qualidade no processo de desenvolvimento de software.
 
-### Matheus Silva (RM 553180)
+### Matheus Silva (RM553180)
 - **Responsabilidade**:
   - Advanced Business Development with .NET
   - DevOps Tools and Cloud Computing
