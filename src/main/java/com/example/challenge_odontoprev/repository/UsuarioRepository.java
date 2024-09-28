@@ -15,6 +15,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UUID> {
 
     boolean existsByEmail(String email);
 
-    @Query("SELECT u FROM Usuario u JOIN u.consultas c JOIN c.tratamentos t WHERE LOWER(t.nome) = LOWER(:tratamentoNome)")
-    List<Usuario> findByTratamento(@Param("tratamentoNome") String tratamentoNome);
+
 }

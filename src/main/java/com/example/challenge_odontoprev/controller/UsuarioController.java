@@ -37,11 +37,7 @@ public class UsuarioController {
         return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/tratamento/{tratamentoNome}")
-    public ResponseEntity<List<Usuario>> getUsuariosByTratamento(@PathVariable String tratamentoNome) {
-        List<Usuario> usuarios = usuarioService.getUsuariosByTratamento(tratamentoNome);
-        return ResponseEntity.ok(usuarios);
-    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable UUID id) {

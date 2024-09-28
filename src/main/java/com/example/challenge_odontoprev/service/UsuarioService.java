@@ -58,7 +58,5 @@ public class UsuarioService {
         return usuario;
     }
 
-    public List<Usuario> getUsuariosByTratamento(String tratamentoNome) {
-        return usuarioRepository.findByTratamento(tratamentoNome);
-    }
+
 }
