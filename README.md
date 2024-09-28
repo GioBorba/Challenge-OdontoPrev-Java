@@ -1,10 +1,36 @@
 # Challenge OdontoPrev
 
-## Integrantes do Grupo
 
-- **Eduardo Rodrigues (RM 553705)**: Responsável pela implementação das funcionalidades relacionadas ao tratamento dos dados e testes automatizados.
-- **Giovani Borba (RM 553724)**: Responsável pela implementação do backend da aplicação, integração com o banco de dados e configuração dos serviços.
-- **Matheus Silva (RM 553180)**: Responsável pelo desenvolvimento do frontend e integração com o machine learning, além do gerenciamento das tasks no GitHub.
+
+## Integrantes e Responsabilidades
+
+### Eduardo Rodrigues (RM 553705)
+- **Responsabilidade**:
+  - Disruptive Architectures: IoT, IOB & Generative AI
+  - Mobile Development Application
+- **Tarefas**:
+  - Desenvolvimento das funcionalidades do aplicativo usando Kotlin.
+  - Implementação de recursos de IoT no aplicativo.
+  - Integração de inteligência artificial generativa para melhorar a experiência do usuário.
+
+### Giovani Borba (RM 553724)
+- **Responsabilidade**:
+  - Java Advanced
+  - Compliance & Quality Assurance
+  - Mastering Relational and Non-relational Database
+- **Tarefas**:
+  - Desenvolvimento do backend com Spring Boot e JPA.
+  - Implementação da gestão de banco de dados usando Oracle.
+  - Garantia de conformidade e qualidade no processo de desenvolvimento de software.
+
+### Matheus Silva (RM 553180)
+- **Responsabilidade**:
+  - Advanced Business Development with .NET
+  - DevOps Tools and Cloud Computing
+- **Tarefas**:
+  - Supervisão das estratégias de implantação e integração em nuvem.
+  - Desenvolvimento de serviços de backend usando .NET.
+  - Implementação de práticas de DevOps para integração e entrega contínuas.
 
 
 ## Instruções para Rodar a Aplicação
@@ -15,7 +41,7 @@ Para executar a aplicação, siga os passos abaixo:
 2. **Navegue até a pasta do projeto**
 3. **Execute o projeto**: 
    1. Abra o IntelliJ e importe o projeto como um projeto Maven.
-   2. Rode a classe main (ChallengeOdontoprevApplication)
+   2. Execute a aplicação (ChallengeOdontoprevApplication)
 
 ## Imagens dos Diagramas
 
