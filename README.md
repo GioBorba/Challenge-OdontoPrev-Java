@@ -55,7 +55,7 @@ Para executar a aplicação, siga os passos abaixo:
 
 ## Vídeo Apresentando a Proposta Tecnológica
 
-### Link do Vídeo: 
+### Link do Vídeo: https://www.youtube.com/watch?v=1LRfoJNFMBQ
 
 ## Documentação da API
 
