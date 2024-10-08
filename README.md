@@ -45,13 +45,13 @@ Para executar a aplicação, siga os passos abaixo:
 
 ## Imagens dos Diagramas
 
-### Diagrama de Classes
+![c4fcf2ec-1b3b-45e0-8fc2-58e329fe3bf9](https://github.com/user-attachments/assets/519b0b79-3c3a-4a8d-a9b7-f822d84266aa)
 
--diagrama 1-
+![6b759e10-9a3d-42a5-ae5b-4309aa51a94e](https://github.com/user-attachments/assets/649e6b58-19ea-40be-9283-50356db9e244)
 
-### Diagrama de Sequência
 
--diagrama 2-
+![456f1b80-ea8a-433a-9a79-d4f7b6bf82d1](https://github.com/user-attachments/assets/b54bd7c7-72f1-469a-b087-e81a5ae56afc)
+
 
 ## Vídeo Apresentando a Proposta Tecnológica
 
