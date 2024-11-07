@@ -1,5 +1,12 @@
 # Challenge OdontoPrev
 
+## Melhoras na Sprint 2
+  -Utilização do Lombok para otimizar o código.
+  -Manejo de Exceções e Tratamento de Erros.
+  -Adoção de Práticas de Desenvolvimento Ágil, como o uso de commits frequentes e planejamento de tarefas.
+  -Comentários explicativos no código para melhor entendimento.
+  -Utilização de HATEOAS.
+  -Criações de Links para ajudar ao fazer as requisições no Postman.
 
 
 ## Integrantes e Responsabilidades
