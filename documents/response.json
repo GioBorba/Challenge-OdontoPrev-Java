@@ -1,0 +1,131 @@
+[
+  {
+    "id": "23e994ed-64cb-dfea-e063-103ca8c0a491",
+    "nome": "Consulta para Dentadura",
+    "data": "2024-10-15T10:00:00",
+    "tratamentos": [],
+    "usuarioId": "23e994ed-64c9-dfea-e063-103ca8c0a491",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/consultas/23e994ed-64cb-dfea-e063-103ca8c0a491"
+      },
+      {
+        "rel": "allConsultas",
+        "href": "/consultas"
+      },
+      {
+        "rel": "consultasPorUsuario",
+        "href": "/consultas/usuario/23e994ed-64c9-dfea-e063-103ca8c0a491"
+      }
+    ]
+  },
+  {
+    "id": "2f0ffebb-4bfa-46ae-a80d-cd40dc8c64d6",
+    "nome": "Limpar",
+    "data": "2024-12-21T14:30:00",
+    "tratamentos": [
+      {
+        "id": "1dc64862-7cb3-4bd7-a493-cc3f6eed0beb",
+        "nome": "Limpeza",
+        "links": []
+      }
+    ],
+    "usuarioId": "f4bad87c-bb4a-46a0-a792-74f21fd4f0f0",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/consultas/2f0ffebb-4bfa-46ae-a80d-cd40dc8c64d6"
+      },
+      {
+        "rel": "allConsultas",
+        "href": "/consultas"
+      },
+      {
+        "rel": "consultasPorUsuario",
+        "href": "/consultas/usuario/f4bad87c-bb4a-46a0-a792-74f21fd4f0f0"
+      }
+    ]
+  },
+  {
+    "id": "dbd69049-5e36-4ae2-afda-0e47ea5592d5",
+    "nome": "Cárie",
+    "data": "2024-06-12T19:30:00",
+    "tratamentos": [
+      {
+        "id": "6a94c8a2-057d-4d27-a7c6-331760a9ca6d",
+        "nome": "Cárie",
+        "links": []
+      }
+    ],
+    "usuarioId": "f4bad87c-bb4a-46a0-a792-74f21fd4f0f0",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/consultas/dbd69049-5e36-4ae2-afda-0e47ea5592d5"
+      },
+      {
+        "rel": "allConsultas",
+        "href": "/consultas"
+      },
+      {
+        "rel": "consultasPorUsuario",
+        "href": "/consultas/usuario/f4bad87c-bb4a-46a0-a792-74f21fd4f0f0"
+      }
+    ]
+  },
+  {
+    "id": "c545e843-b647-4831-90ca-a9a391494319",
+    "nome": "Tártaro",
+    "data": "2024-06-12T19:30:00",
+    "tratamentos": [
+      {
+        "id": "5e98f5b6-d4ca-47d0-96b3-e382542c8038",
+        "nome": "Tártaro",
+        "links": []
+      }
+    ],
+    "usuarioId": "f4bad87c-bb4a-46a0-a792-74f21fd4f0f0",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/consultas/c545e843-b647-4831-90ca-a9a391494319"
+      },
+      {
+        "rel": "allConsultas",
+        "href": "/consultas"
+      },
+      {
+        "rel": "consultasPorUsuario",
+        "href": "/consultas/usuario/f4bad87c-bb4a-46a0-a792-74f21fd4f0f0"
+      }
+    ]
+  },
+  {
+    "id": "7a1f0d63-65e5-43ec-b02a-56c4ce6c2a31",
+    "nome": "Tártaro",
+    "data": "2024-09-03T20:30:00",
+    "tratamentos": [
+      {
+        "id": "5e98f5b6-d4ca-47d0-96b3-e382542c8038",
+        "nome": "Tártaro",
+        "links": []
+      }
+    ],
+    "usuarioId": "d9833d7c-4203-4034-81f2-c7f1c70eafd7",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/consultas/7a1f0d63-65e5-43ec-b02a-56c4ce6c2a31"
+      },
+      {
+        "rel": "allConsultas",
+        "href": "/consultas"
+      },
+      {
+        "rel": "consultasPorUsuario",
+        "href": "/consultas/usuario/d9833d7c-4203-4034-81f2-c7f1c70eafd7"
+      }
+    ]
+  }
+]

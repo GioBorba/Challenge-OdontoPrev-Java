@@ -3,9 +3,7 @@ package com.example.challenge_odontoprev.controller;
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
 import com.example.challenge_odontoprev.service.TratamentoService;
 import lombok.AllArgsConstructor;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,39 +18,48 @@ public class TratamentoController {
 
     private final TratamentoService tratamentoService;
 
+    // Criando um novo tratamento
     @PostMapping
-    public ResponseEntity<EntityModel<TratamentoDTO>> createTratamento(@RequestBody TratamentoDTO tratamentoDTO) {
+    public ResponseEntity<TratamentoDTO> createTratamento(@RequestBody TratamentoDTO tratamentoDTO) {
         TratamentoDTO createdTratamento = tratamentoService.saveTratamento(tratamentoDTO);
-        // Adicionando o link HATEOAS
-        EntityModel<TratamentoDTO> tratamentoModel = EntityModel.of(createdTratamento);
-        Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TratamentoController.class).getTratamentoById(createdTratamento.getId())).withSelfRel();
-        Link allLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TratamentoController.class).getAllTratamentos()).withRel("allTratamentos");
-        tratamentoModel.add(selfLink, allLink);
-        return ResponseEntity.status(201).body(tratamentoModel);
+
+        // Adicionando links HATEOAS
+        createdTratamento.add(Link.of("/tratamentos/" + createdTratamento.getId()).withSelfRel());
+        createdTratamento.add(Link.of("/tratamentos").withRel("allTratamentos"));
+
+        return ResponseEntity.status(201).body(createdTratamento);
     }
 
+    // Listando todos os tratamentos
     @GetMapping
     public ResponseEntity<List<TratamentoDTO>> getAllTratamentos() {
         List<TratamentoDTO> tratamentos = tratamentoService.getAllTratamentos();
 
+        // Adicionando links HATEOAS para cada tratamento
+        tratamentos.forEach(tratamento -> {
+            tratamento.add(Link.of("/tratamentos/" + tratamento.getId()).withSelfRel());
+            tratamento.add(Link.of("/tratamentos").withRel("allTratamentos"));
+        });
+
         return ResponseEntity.ok(tratamentos);
     }
 
+    // Consultando um tratamento específico
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<TratamentoDTO>> getTratamentoById(@PathVariable UUID id) {
+    public ResponseEntity<TratamentoDTO> getTratamentoById(@PathVariable UUID id) {
         Optional<TratamentoDTO> tratamento = tratamentoService.getTratamentoById(id);
+
         if (tratamento.isPresent()) {
-            // Adicionando os links HATEOAS
-            EntityModel<TratamentoDTO> tratamentoModel = EntityModel.of(tratamento.get());
-            Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TratamentoController.class).getTratamentoById(id)).withSelfRel();
-            Link allLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TratamentoController.class).getAllTratamentos()).withRel("allTratamentos");
-            tratamentoModel.add(selfLink, allLink);
-            return ResponseEntity.ok(tratamentoModel);
+            // Adicionando links HATEOAS
+            tratamento.get().add(Link.of("/tratamentos/" + tratamento.get().getId()).withSelfRel());
+            tratamento.get().add(Link.of("/tratamentos").withRel("allTratamentos"));
+            return ResponseEntity.ok(tratamento.get());
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
+    // Excluindo um tratamento
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTratamento(@PathVariable UUID id) {
         tratamentoService.deleteTratamento(id);

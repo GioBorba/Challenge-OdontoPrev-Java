@@ -1,0 +1,198 @@
+[
+  {
+    "id": "23e994ed-64ca-dfea-e063-103ca8c0a491",
+    "nome": "Dentadura",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23e994ed-64ca-dfea-e063-103ca8c0a491"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "1dc64862-7cb3-4bd7-a493-cc3f6eed0beb",
+    "nome": "Limpeza",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/1dc64862-7cb3-4bd7-a493-cc3f6eed0beb"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "6a94c8a2-057d-4d27-a7c6-331760a9ca6d",
+    "nome": "Cárie",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/6a94c8a2-057d-4d27-a7c6-331760a9ca6d"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "5e98f5b6-d4ca-47d0-96b3-e382542c8038",
+    "nome": "Tártaro",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/5e98f5b6-d4ca-47d0-96b3-e382542c8038"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d56-ee58-e063-103ca8c0daf4",
+    "nome": "Limpeza Dental",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d56-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d57-ee58-e063-103ca8c0daf4",
+    "nome": "Restauração",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d57-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d58-ee58-e063-103ca8c0daf4",
+    "nome": "Canal",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d58-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d59-ee58-e063-103ca8c0daf4",
+    "nome": "Exame de Raios-X",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d59-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5a-ee58-e063-103ca8c0daf4",
+    "nome": "Aplicação de Flúor",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5a-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5b-ee58-e063-103ca8c0daf4",
+    "nome": "Extração",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5b-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5c-ee58-e063-103ca8c0daf4",
+    "nome": "Gengivite",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5c-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5d-ee58-e063-103ca8c0daf4",
+    "nome": "Clareamento",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5d-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5e-ee58-e063-103ca8c0daf4",
+    "nome": "Dentadura",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5e-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d5f-ee58-e063-103ca8c0daf4",
+    "nome": "Aparelho",
+    "links": [
+      {
+        "rel": "self",
+        "href": "/tratamentos/23eaa6d7-9d5f-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allTratamentos",
+        "href": "/tratamentos"
+      }
+    ]
+  }
+]

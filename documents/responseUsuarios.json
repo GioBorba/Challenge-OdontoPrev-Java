@@ -1,0 +1,226 @@
+[
+  {
+    "id": "23e994ed-64c9-dfea-e063-103ca8c0a491",
+    "nome": "Mariana Silva",
+    "email": "mariana.silva@example.com",
+    "senha": "senhaSegura123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23e994ed-64c9-dfea-e063-103ca8c0a491"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "9bd91f52-513e-4b79-8597-940359e49cc9",
+    "nome": "Lucas1",
+    "email": "alex.vermelho1@example.com",
+    "senha": "senhaSafe4220",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/9bd91f52-513e-4b79-8597-940359e49cc9"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "f4bad87c-bb4a-46a0-a792-74f21fd4f0f0",
+    "nome": "Jon",
+    "email": "jones.azul@example.com",
+    "senha": "senhaSegura1233",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/f4bad87c-bb4a-46a0-a792-74f21fd4f0f0"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "d9833d7c-4203-4034-81f2-c7f1c70eafd7",
+    "nome": "Alex",
+    "email": "alex.vermelho@example.com",
+    "senha": "senhaSafe4220",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/d9833d7c-4203-4034-81f2-c7f1c70eafd7"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d4c-ee58-e063-103ca8c0daf4",
+    "nome": "Michael",
+    "email": "michael.novo@exemplo.com",
+    "senha": "michael123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d4c-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d4d-ee58-e063-103ca8c0daf4",
+    "nome": "Luiza",
+    "email": "luiza@exemplo.com",
+    "senha": "luiza123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d4d-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d4e-ee58-e063-103ca8c0daf4",
+    "nome": "Luana",
+    "email": "luana@exemplo.com",
+    "senha": "luana123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d4e-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d4f-ee58-e063-103ca8c0daf4",
+    "nome": "John",
+    "email": "john@exemplo.com",
+    "senha": "john123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d4f-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d50-ee58-e063-103ca8c0daf4",
+    "nome": "Juan",
+    "email": "juan@exemplo.com",
+    "senha": "juan123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d50-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d51-ee58-e063-103ca8c0daf4",
+    "nome": "Doug",
+    "email": "doug@exemplo.com",
+    "senha": "doug123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d51-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d52-ee58-e063-103ca8c0daf4",
+    "nome": "Jenny",
+    "email": "jenny@exemplo.com",
+    "senha": "jenny123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d52-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d53-ee58-e063-103ca8c0daf4",
+    "nome": "Jonas",
+    "email": "jonas@exemplo.com",
+    "senha": "jonas123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d53-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d54-ee58-e063-103ca8c0daf4",
+    "nome": "Joana",
+    "email": "joana@exemplo.com",
+    "senha": "joana123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d54-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  },
+  {
+    "id": "23eaa6d7-9d55-ee58-e063-103ca8c0daf4",
+    "nome": "Clayton",
+    "email": "clayton@exemplo.com",
+    "senha": "clayton123",
+    "links": [
+      {
+        "rel": "self",
+        "href": "http://localhost:8080/usuarios/23eaa6d7-9d55-ee58-e063-103ca8c0daf4"
+      },
+      {
+        "rel": "allUsuarios",
+        "href": "http://localhost:8080/usuarios"
+      }
+    ]
+  }
+]
