@@ -18,10 +18,21 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     public UsuarioDTO saveUsuario(UsuarioDTO usuarioDTO) {
-        if (usuarioRepository.existsByEmail(usuarioDTO.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O e-mail já está em uso.");
+        Usuario usuario;
+        if (usuarioDTO.getId() != null) {
+            // Atualiza o usuário existente
+            usuario = usuarioRepository.findById(usuarioDTO.getId())
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            usuario.setNome(usuarioDTO.getNome());
+            usuario.setEmail(usuarioDTO.getEmail());
+            usuario.setSenha(usuarioDTO.getSenha());
+        } else {
+            // Cria um novo usuário
+            usuario = new Usuario();
+            usuario.setNome(usuarioDTO.getNome());
+            usuario.setEmail(usuarioDTO.getEmail());
+            usuario.setSenha(usuarioDTO.getSenha());
         }
-        Usuario usuario = toEntity(usuarioDTO);
         Usuario savedUsuario = usuarioRepository.save(usuario);
         return toDto(savedUsuario);
     }

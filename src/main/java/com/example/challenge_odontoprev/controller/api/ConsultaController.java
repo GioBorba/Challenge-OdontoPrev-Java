@@ -1,10 +1,9 @@
-package com.example.challenge_odontoprev.controller;
+package com.example.challenge_odontoprev.controller.api;
 
 import com.example.challenge_odontoprev.dto.ConsultaDTO;
 import com.example.challenge_odontoprev.service.ConsultaService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.Links;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

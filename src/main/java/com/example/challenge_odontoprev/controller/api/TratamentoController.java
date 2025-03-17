@@ -1,4 +1,4 @@
-package com.example.challenge_odontoprev.controller;
+package com.example.challenge_odontoprev.controller.api;
 
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
 import com.example.challenge_odontoprev.service.TratamentoService;

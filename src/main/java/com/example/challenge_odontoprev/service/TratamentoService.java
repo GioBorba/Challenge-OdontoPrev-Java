@@ -16,7 +16,15 @@ public class TratamentoService {
     private final TratamentoRepository tratamentoRepository;
 
     public TratamentoDTO saveTratamento(TratamentoDTO tratamentoDTO) {
-        Tratamento tratamento = toEntity(tratamentoDTO);
+        Tratamento tratamento;
+        if (tratamentoDTO.getId() != null) {
+            tratamento = tratamentoRepository.findById(tratamentoDTO.getId())
+                    .orElseThrow(() -> new RuntimeException("Tratamento não encontrado"));
+            tratamento.setNome(tratamentoDTO.getNome());
+        } else {
+            tratamento = new Tratamento();
+            tratamento.setNome(tratamentoDTO.getNome());
+        }
         Tratamento savedTratamento = tratamentoRepository.save(tratamento);
         return toDto(savedTratamento);
     }
