@@ -38,4 +38,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Consulta> consultas;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lembrete> lembretes;
 }
