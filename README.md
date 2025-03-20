@@ -1,44 +1,22 @@
 # Challenge OdontoPrev
 
-## Melhoras na Sprint 2
-- Utilização do Lombok para otimizar o código.
-- Manejo de Exceções e Tratamento de Erros.
-- Adoção de Práticas de Desenvolvimento Ágil, como o uso de commits frequentes e planejamento de tarefas.
-- Comentários explicativos no código para melhor entendimento.
-- Utilização de HATEOAS.
-- Criação de Links para ajudar ao fazer as requisições no Postman.
-
-
-
 ## Integrantes e Responsabilidades
 
 ### Eduardo Rodrigues (RM553705)
 - **Responsabilidade**:
   - Disruptive Architectures: IoT, IOB & Generative AI
-  - Mobile Development Application
-- **Tarefas**:
-  - Desenvolvimento das funcionalidades do aplicativo usando Kotlin.
-  - Implementação de recursos de IoT no aplicativo.
-  - Integração de inteligência artificial generativa para melhorar a experiência do usuário.
+  - Compliance & Quality Assurance
 
 ### Giovani Borba (RM553724)
 - **Responsabilidade**:
   - Java Advanced
-  - Compliance & Quality Assurance
+  - Mobile Development Application
   - Mastering Relational and Non-relational Database
-- **Tarefas**:
-  - Desenvolvimento do backend com Spring Boot e JPA.
-  - Implementação da gestão de banco de dados usando Oracle.
-  - Garantia de conformidade e qualidade no processo de desenvolvimento de software.
 
 ### Matheus Silva (RM553180)
 - **Responsabilidade**:
   - Advanced Business Development with .NET
   - DevOps Tools and Cloud Computing
-- **Tarefas**:
-  - Supervisão das estratégias de implantação e integração em nuvem.
-  - Desenvolvimento de serviços de backend usando .NET.
-  - Implementação de práticas de DevOps para integração e entrega contínuas.
 
 
 ## Instruções para Rodar a Aplicação
@@ -50,6 +28,32 @@ Para executar a aplicação, siga os passos abaixo:
 3. **Execute o projeto**: 
    1. Abra o IntelliJ e importe o projeto como um projeto Maven.
    2. Execute a aplicação (ChallengeOdontoprevApplication)
+
+
+## Sprint 3
+### Sobre o projeto
+- O projeto consiste em um sistema de gerenciamento de tratamentos e consultas médicas, com funcionalidades para cadastro de usuários, agendamento de consultas, lembretes de tratamentos e auditoria de operações no banco de dados. O sistema foi desenvolvido utilizando Java com Spring Boot para o backend, Oracle Database para o banco de dados e Thymeleaf para a camada de visualização.
+
+### Endpoints para verificação Web
+- GET /
+  1. Página inicial do sistema.
+
+Usuários
+- GET /web/usuarios
+  1. Lista todos os usuários cadastrados.
+
+Tratamentos
+- GET /web/tratamentos
+  1. Lista todos os tratamentos cadastrados.
+
+## Link: https://www.youtube.com/watch?v=XS3RI5sCbp4
+
+
+
+---
+
+
+## Sprint 2
 
 ## Imagens dos Diagramas
 
