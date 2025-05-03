@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OdontoPrev - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
-<!-- Header -->
-<header class="bg-blue-600 text-white shadow-lg">
-    <div class="container mx-auto px-4 py-6 text-center">
-        <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-        <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Home</a>
-            <a th:href="@{/web/tratamentos}" class="text-white hover:underline transition-all duration-1000 hover:text-gray-200">Tratamentos</a>
-            <a th:href="@{/web/usuarios}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Usuários</a>
-        </nav>
-
-    </div>
-</header>
-
-<!-- Main Content -->
-<main class="container mx-auto px-4 py-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4">Bem-vindo ao OdontoPrev</h2>
-        <p class="text-gray-700">Gerencie seus usuários e tratamentos de forma simples e eficiente.</p>
-        <div class="mt-6">
-            <a th:href="@{/web/tratamentos}" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Ver Tratamentos</a>
-            <a th:href="@{/web/usuarios}" class="bg-green-500 text-white px-4 py-2 rounded">Ver Usuários</a>
+    <header class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <h1 class="text-3xl font-bold">OdontoPrev</h1>
+            <nav class="mt-4 flex justify-center space-x-4">
+                <a th:href="@{/}" class="text-white hover:underline">Home</a>
+                <a th:href="@{/web/usuarios}" class="text-white hover:underline">Usuários</a>
+                <a th:href="@{/web/tratamentos}" class="text-white hover:underline">Tratamentos</a>
+                <a th:href="@{/web/consultas}" class="text-white hover:underline">Consultas</a>
+                <a th:href="@{/web/lembretes}" class="text-white hover:underline">Lembretes</a>
+            </nav>
         </div>
-    </div>
-</main>
-
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Bem-vindo ao sistema OdontoPrev</h2>
+            <p class="text-gray-700">Gerencie consultas, lembretes e tratamentos de forma integrada.</p>
+        </div>
+    </main>
 </body>
 </html>
