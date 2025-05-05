@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -67,6 +69,15 @@ public class UsuarioService {
         usuario.setSenha(dto.getSenha());
 
         return usuario;
+    }
+
+    public Map<String, String> getUsuariosMap() {
+        return usuarioRepository.findAll()
+                .stream()
+                .collect(Collectors.toMap(
+                        usuario -> usuario.getId().toString(),
+                        Usuario::getNome
+                ));
     }
 
 

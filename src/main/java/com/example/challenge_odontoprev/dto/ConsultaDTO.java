@@ -14,4 +14,5 @@ public class ConsultaDTO extends RepresentationModel<ConsultaDTO> {
     private LocalDateTime data;
     private List<TratamentoDTO> tratamentos;
     private UUID usuarioId;
+    private String usuarioNome;
 }
