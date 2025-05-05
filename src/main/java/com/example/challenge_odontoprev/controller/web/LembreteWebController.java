@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.UUID;
 
@@ -32,23 +33,43 @@ public class LembreteWebController {
     }
 
     @PostMapping("/salvar")
-    public String salvarLembrete(@ModelAttribute("lembrete") LembreteDTO lembreteDTO) {
-        lembreteService.saveLembrete(lembreteDTO);
+    public String salvarLembrete(@ModelAttribute("lembrete") LembreteDTO lembreteDTO,
+                                 RedirectAttributes redirectAttributes) {
+        try {
+            lembreteService.saveLembrete(lembreteDTO);
+            redirectAttributes.addFlashAttribute("successMessage", "Lembrete salvo com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar lembrete: " + e.getMessage());
+        }
         return "redirect:/web/lembretes";
     }
 
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicao(@PathVariable UUID id, Model model) {
-        LembreteDTO lembreteDTO = lembreteService.getLembreteById(id)
-                .orElseThrow(() -> new RuntimeException("Lembrete não encontrado"));
-        model.addAttribute("lembrete", lembreteDTO);
-        model.addAttribute("usuarios", usuarioService.getAllUsuarios());
+        lembreteService.getLembreteById(id).ifPresentOrElse(
+                lembrete -> {
+                    model.addAttribute("lembrete", lembrete);
+                    model.addAttribute("usuarios", usuarioService.getAllUsuarios());
+                },
+                () -> model.addAttribute("errorMessage", "Lembrete não encontrado")
+        );
         return "lembrete-form";
     }
 
     @GetMapping("/deletar/{id}")
-    public String deletarLembrete(@PathVariable UUID id) {
-        lembreteService.deleteLembrete(id);
+    public String deletarLembrete(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        try {
+            lembreteService.deleteLembrete(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Lembrete deletado com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao deletar lembrete: " + e.getMessage());
+        }
         return "redirect:/web/lembretes";
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public String listarLembretesPorUsuario(@PathVariable UUID usuarioId, Model model) {
+        model.addAttribute("lembretes", lembreteService.getLembretesByUsuarioId(usuarioId));
+        return "lembrete-list";
     }
 }

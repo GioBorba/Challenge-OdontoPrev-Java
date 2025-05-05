@@ -11,6 +11,7 @@ public class LembreteDTO {
     private String texto;
     private LocalTime horario;
     private UUID usuarioId; // ID do usuário associado ao lembrete
+    private String usuarioNome;
 
 
 }

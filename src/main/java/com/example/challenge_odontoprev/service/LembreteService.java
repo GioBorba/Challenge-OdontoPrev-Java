@@ -24,16 +24,26 @@ public class LembreteService {
 
     // Salva um novo lembrete
     public LembreteDTO saveLembrete(LembreteDTO lembreteDTO) {
-        // Verifica se o usuário associado ao lembrete existe
         Usuario usuario = usuarioRepository.findById(lembreteDTO.getUsuarioId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado"));
 
-        Lembrete lembrete = toEntity(lembreteDTO);
+        Lembrete lembrete;
+        if (lembreteDTO.getId() != null) {
+            lembrete = lembreteRepository.findById(lembreteDTO.getId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lembrete não encontrado"));
+        } else {
+            lembrete = new Lembrete();
+        }
+
+        lembrete.setTexto(lembreteDTO.getTexto());
+        lembrete.setHorario(lembreteDTO.getHorario());
         lembrete.setUsuario(usuario);
+
         Lembrete savedLembrete = lembreteRepository.save(lembrete);
 
         return toDto(savedLembrete);
     }
+
 
     // Retorna todos os lembretes
     public List<LembreteDTO> getAllLembretes() {
@@ -80,6 +90,7 @@ public class LembreteService {
         dto.setTexto(lembrete.getTexto());
         dto.setHorario(lembrete.getHorario());
         dto.setUsuarioId(lembrete.getUsuario().getId());
+        dto.setUsuarioNome(lembrete.getUsuario().getNome());
         return dto;
     }
 }
