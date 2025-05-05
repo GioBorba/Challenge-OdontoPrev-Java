@@ -6,9 +6,11 @@ import com.example.challenge_odontoprev.model.Consulta;
 import com.example.challenge_odontoprev.model.Tratamento;
 import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.repository.ConsultaRepository;
+import com.example.challenge_odontoprev.repository.TratamentoRepository;
 import com.example.challenge_odontoprev.repository.UsuarioRepository; // Adicionado para buscar o usuário
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class ConsultaService {
     private final ConsultaRepository consultaRepository;
-    private final UsuarioRepository usuarioRepository; // Adicionando o repositório de usuário
+    private final UsuarioRepository usuarioRepository;
+    private final TratamentoRepository tratamentoRepository;
 
     public ConsultaDTO saveConsulta(ConsultaDTO consultaDTO) {
         Consulta consulta = toEntity(consultaDTO);
@@ -59,6 +62,7 @@ public class ConsultaService {
         dto.setTratamentos(tratamentoDTOs);
 
         dto.setUsuarioId(consulta.getUsuario().getId());
+        dto.setUsuarioNome(consulta.getUsuario().getNome());
 
         return dto;
     }
@@ -97,4 +101,13 @@ public class ConsultaService {
         tratamento.setNome(dto.getNome());
         return tratamento;
     }
+
+    @Transactional(readOnly = true)
+    public List<TratamentoDTO> findTratamentosByIds(List<UUID> ids) {
+        return tratamentoRepository.findAllById(ids).stream()
+                .map(this::toTratamentoDto)
+                .collect(Collectors.toList());
+    }
+
+
 }

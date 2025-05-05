@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -55,4 +56,11 @@ public class TratamentoService {
         tratamento.setNome(dto.getNome());
         return tratamento;
     }
+
+    public List<TratamentoDTO> findTratamentosByIds(List<UUID> ids) {
+        return tratamentoRepository.findAllById(ids).stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
 }
