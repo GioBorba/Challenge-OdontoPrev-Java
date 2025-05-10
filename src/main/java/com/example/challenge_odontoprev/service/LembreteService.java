@@ -93,4 +93,15 @@ public class LembreteService {
         dto.setUsuarioNome(lembrete.getUsuario().getNome());
         return dto;
     }
+
+    public void deleteLembreteComVerificacao(UUID lembreteId, UUID usuarioLogadoId, boolean isAdmin) {
+        Lembrete lembrete = lembreteRepository.findById(lembreteId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lembrete não encontrado"));
+
+        if (!isAdmin && !lembrete.getUsuario().getId().equals(usuarioLogadoId)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você não tem permissão para deletar este lembrete");
+        }
+
+        lembreteRepository.delete(lembrete);
+    }
 }

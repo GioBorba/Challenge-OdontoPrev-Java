@@ -1,5 +1,6 @@
 package com.example.challenge_odontoprev.dto;
 
+import com.example.challenge_odontoprev.model.Role;
 import com.example.challenge_odontoprev.model.Usuario;
 import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
@@ -12,4 +13,6 @@ public class UsuarioDTO extends RepresentationModel<UsuarioDTO> {
     private String nome;
     private String email;
     private String senha;
+    private Role role;
+
 }

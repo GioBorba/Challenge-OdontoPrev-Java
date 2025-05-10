@@ -60,6 +60,10 @@ public class ConsultaService {
                 .map(this::toTratamentoDto)
                 .collect(Collectors.toList());
         dto.setTratamentos(tratamentoDTOs);
+        List<UUID> tratamentoIds = consulta.getTratamentos().stream()
+                .map(Tratamento::getId)
+                .collect(Collectors.toList());
+        dto.setTratamentosIds(tratamentoIds);
 
         dto.setUsuarioId(consulta.getUsuario().getId());
         dto.setUsuarioNome(consulta.getUsuario().getNome());
@@ -75,25 +79,35 @@ public class ConsultaService {
     }
 
     private Consulta toEntity(ConsultaDTO dto) {
-        Consulta consulta = new Consulta();
+        Consulta consulta;
+
+        if (dto.getId() != null) {
+            consulta = consultaRepository.findById(dto.getId())
+                    .orElseThrow(() -> new RuntimeException("Consulta não encontrada com ID: " + dto.getId()));
+        } else {
+            consulta = new Consulta();
+        }
+
         consulta.setNome(dto.getNome());
         consulta.setData(dto.getData());
 
-        // Buscar o usuário existente no banco de dados
         Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + dto.getUsuarioId()));
         consulta.setUsuario(usuario);
 
-
-        if (dto.getTratamentos() != null) {
-            List<Tratamento> tratamentos = dto.getTratamentos().stream()
-                    .map(this::toTratamentoEntity)
+        if (dto.getTratamentosIds() != null && !dto.getTratamentosIds().isEmpty()) {
+            List<Tratamento> tratamentos = dto.getTratamentosIds().stream()
+                    .map(tratamentoId -> tratamentoRepository.findById(tratamentoId)
+                            .orElseThrow(() -> new RuntimeException("Tratamento não encontrado com ID: " + tratamentoId)))
                     .collect(Collectors.toList());
             consulta.setTratamentos(tratamentos);
+        } else {
+            consulta.setTratamentos(null); // Se não veio nenhum, limpar
         }
 
         return consulta;
     }
+
 
     private Tratamento toTratamentoEntity(TratamentoDTO dto) {
         Tratamento tratamento = new Tratamento();
@@ -108,6 +122,8 @@ public class ConsultaService {
                 .map(this::toTratamentoDto)
                 .collect(Collectors.toList());
     }
+
+
 
 
 }
