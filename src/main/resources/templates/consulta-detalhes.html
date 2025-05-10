@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,28 @@
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
-    <div class="container mx-auto px-4 py-6 text-center">
-        <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
+    <div class="container mx-auto px-4 py-6">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
+                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
+                        Sair
+                    </button>
+                </form>
+            </div>
+        </div>
         <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Home</a>
-            <a th:href="@{/web/tratamentos}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Tratamentos</a>
-            <a th:href="@{/web/usuarios}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Usuários</a>
-            <a th:href="@{/web/consultas}" class="text-white hover:underline transition duration-800 hover:text-gray-200">Consultas</a>
+            <a th:href="@{/}" class="text-white hover:underline">Home</a>
+            <a th:href="@{/web/usuarios}" class="text-white hover:underline"
+               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+            <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
+               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+            <a th:href="@{/web/consultas}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()">Consultas</a>
+            <a th:href="@{/web/lembretes}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()">Lembretes</a>
         </nav>
     </div>
 </header>
@@ -51,8 +67,9 @@
             </div>
         </div>
 
-        <div class="mt-6">
-            <a th:href="@{/web/consultas}" class="bg-blue-500 text-white px-4 py-2 rounded">Voltar</a>
+        <div class="mt-6 flex space-x-2">
+            <a th:href="@{/web/consultas}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Voltar</a>
+            <a th:href="@{'/web/consultas/editar/' + ${consulta.id}}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Editar Consulta</a>
         </div>
     </div>
 </main>

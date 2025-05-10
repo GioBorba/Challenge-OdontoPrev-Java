@@ -36,9 +36,18 @@ public class Usuario {
     @Size(min = 5, message = "A senha deve ter no mínimo 5 caracteres")
     private String senha;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
+
     @OneToMany(mappedBy = "usuario")
     private List<Consulta> consultas;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lembrete> lembretes;
+
+    public boolean isAdmin() {
+        return this.getRole() == Role.ADMIN;
+    }
+
 }

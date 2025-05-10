@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,29 @@
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
-    <div class="container mx-auto px-4 py-6 text-center">
-        <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
+    <div class="container mx-auto px-4 py-6">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
+                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
+                        Sair
+                    </button>
+                </form>
+            </div>
+        </div>
         <nav class="mt-4 flex justify-center space-x-4">
             <a th:href="@{/}" class="text-white hover:underline">Home</a>
-            <a th:href="@{/web/usuarios}" class="text-white hover:underline font-bold">Usuários</a>
-            <a th:href="@{/web/tratamentos}" class="text-white hover:underline">Tratamentos</a>
-            <a th:href="@{/web/consultas}" class="text-white hover:underline">Consultas</a>
-            <a th:href="@{/web/lembretes}" class="text-white hover:underline">Lembretes</a>
+            <a th:href="@{/web/usuarios}" class="text-white hover:underline font-bold"
+               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+            <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
+               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+            <a th:href="@{/web/consultas}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()">Consultas</a>
+            <a th:href="@{/web/lembretes}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()">Lembretes</a>
         </nav>
-
     </div>
 </header>
 
@@ -31,6 +45,8 @@
                 <th class="py-2 px-4 border">ID</th>
                 <th class="py-2 px-4 border">Nome</th>
                 <th class="py-2 px-4 border">Email</th>
+                <th class="py-2 px-4 border">Função</th>
+
                 <th class="py-2 px-4 border">Ações</th>
             </tr>
             </thead>
@@ -39,6 +55,8 @@
                 <td class="py-2 px-4 border" th:text="${usuario.id}"></td>
                 <td class="py-2 px-4 border" th:text="${usuario.nome}"></td>
                 <td class="py-2 px-4 border" th:text="${usuario.email}"></td>
+                <td class="py-2 px-4 border" th:text="${usuario.role}"></td>
+
                 <td class="py-2 px-4 border">
                     <a th:href="@{/web/usuarios/editar/{id}(id=${usuario.id})}" class="text-blue-500 hover:underline">Editar</a>
                     <a th:href="@{/web/usuarios/deletar/{id}(id=${usuario.id})}" onclick="return confirm('Confirmar exclusão?')" class="text-red-500 hover:underline ml-2">Deletar</a>
