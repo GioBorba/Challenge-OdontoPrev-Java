@@ -60,7 +60,7 @@ public class UsuarioWebController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar usuário: " + e.getMessage());
         }
 
-        return fromLogin != null && fromLogin.equals("true") ? "redirect:/login" : "redirect:/web/usuarios";
+        return fromLogin != null && fromLogin.equals("true") ? "redirect:/login?contaCriada" : "redirect:/web/usuarios";
     }
 
     // Exibe o formulário de edição

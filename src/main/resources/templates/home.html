@@ -3,44 +3,65 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>OdontoPrev - Home</title>
+    <title th:text="#{app.name} + ' - ' + #{nav.home}">OdontoPrev - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
-                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
-                        Sair
-                    </button>
-                </form>
+            <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4">
+                <!-- Seletor de Idiomas -->
+                <div class="flex space-x-2 mr-4">
+                    <a th:href="@{/(lang=pt_BR)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'pt' ? 'bg-blue-800' : ''}">
+                        PT
+                    </a>
+                    <a th:href="@{/(lang=en)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'en' ? 'bg-blue-800' : ''}">
+                        EN
+                    </a>
+                </div>
+
+                <!-- Usuário + Logout (apenas quando logado) -->
+                <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
+                    <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded" th:text="#{nav.logout}">
+                            Sair
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline font-bold">Home</a>
+            <a th:href="@{/}" class="text-white hover:underline font-bold" th:text="#{nav.home}">Home</a>
             <a th:href="@{/web/usuarios}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.users}">Usuários</a>
             <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.treatments}">Tratamentos</a>
             <a th:href="@{/web/consultas}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Consultas</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Lembretes</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
         </nav>
     </div>
 </header>
 
 <main class="container mx-auto px-4 py-8">
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4">Bem-vindo ao sistema OdontoPrev</h2>
-        <p class="text-gray-700 mb-4"
-           sec:authorize="isAuthenticated()">Seja bem-vindo, <span
-                th:text="${usuarioLogado.nome != null ? usuarioLogado.nome : usuarioLogado.email}"></span>!</p>
-        <p class="text-gray-700">Gerencie consultas, lembretes e tratamentos de forma integrada.</p>
+        <h2 class="text-2xl font-semibold mb-4" th:text="#{home.title}">Bem-vindo ao sistema OdontoPrev</h2>
+        <p class="text-gray-700 mb-4" sec:authorize="isAuthenticated()">
+            <span th:text="#{home.greeting(${usuarioLogado.nome != null ? usuarioLogado.nome : usuarioLogado.email})}">
+                Seja bem-vindo, <span th:text="${usuarioLogado.nome}"></span>!
+            </span>
+        </p>
+        <p class="text-gray-700" th:text="#{home.description}">
+            Gerencie consultas, lembretes e tratamentos de forma integrada.
+        </p>
     </div>
 </main>
 </body>

@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tratamentos</title>
+    <title th:text="#{app.name} + ' - ' + #{nav.treatments}">OdontoPrev - Tratamentos</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
-                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
-                        Sair
-                    </button>
-                </form>
+            <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4">
+                <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
+                    <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded" th:text="#{nav.logout}">
+                            Sair
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline">Home</a>
+            <a th:href="@{/}" class="text-white hover:underline" th:text="#{nav.home}">Home</a>
             <a th:href="@{/web/usuarios}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.users}">Usuários</a>
             <a th:href="@{/web/tratamentos}" class="text-white hover:underline font-bold"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.treatments}">Tratamentos</a>
             <a th:href="@{/web/consultas}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Consultas</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Lembretes</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
         </nav>
     </div>
 </header>
 
 <main class="container mx-auto px-4 py-8">
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4">Lista de Tratamentos</h2>
-        <a th:href="@{/web/tratamentos/novo}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Novo Tratamento</a>
+        <h2 class="text-2xl font-semibold mb-4" th:text="#{treatments.list.title}">Lista de Tratamentos</h2>
+        <a th:href="@{/web/tratamentos/novo}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block" th:text="#{treatments.button.new}">Novo Tratamento</a>
         <table class="min-w-full bg-white border border-gray-300">
             <thead>
             <tr class="bg-gray-200">
-                <th class="py-2 px-4 border">ID</th>
-                <th class="py-2 px-4 border">Nome</th>
-                <th class="py-2 px-4 border">Ações</th>
+                <th class="py-2 px-4 border" th:text="#{treatments.table.id}">ID</th>
+                <th class="py-2 px-4 border" th:text="#{treatments.table.name}">Nome</th>
+                <th class="py-2 px-4 border" th:text="#{treatments.table.actions}">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -52,14 +54,15 @@
                 <td class="py-2 px-4 border" th:text="${tratamento.id}"></td>
                 <td class="py-2 px-4 border" th:text="${tratamento.nome}"></td>
                 <td class="py-2 px-4 border">
-                    <a th:href="@{/web/tratamentos/editar/{id}(id=${tratamento.id})}" class="text-blue-500 hover:underline">Editar</a>
-                    <a th:href="@{/web/tratamentos/deletar/{id}(id=${tratamento.id})}" onclick="return confirm('Confirmar exclusão?')" class="text-red-500 hover:underline ml-2">Deletar</a>
+                    <a th:href="@{/web/tratamentos/editar/{id}(id=${tratamento.id})}" class="text-blue-500 hover:underline" th:text="#{treatments.button.edit}">Editar</a>
+                    <a th:href="@{/web/tratamentos/deletar/{id}(id=${tratamento.id})}"
+                       th:onclick="'return confirm(\'' + #{treatments.delete.confirm} + '\')'"
+                       class="text-red-500 hover:underline ml-2" th:text="#{treatments.button.delete}">Deletar</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 </main>
-
 </body>
 </html>

@@ -1,46 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Lembretes</title>
+    <title th:text="#{app.name} + ' - ' + #{nav.reminders}">OdontoPrev - Lembretes</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
-                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
-                        Sair
-                    </button>
-                </form>
+            <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4">
+                <div class="flex space-x-2 mr-4">
+                    <a th:href="@{/web/lembretes(lang=pt_BR)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'pt' ? 'bg-blue-800' : ''}">
+                        PT
+                    </a>
+                    <a th:href="@{/web/lembretes(lang=en)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'en' ? 'bg-blue-800' : ''}">
+                        EN
+                    </a>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
+                    <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded" th:text="#{nav.logout}">
+                            Sair
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline">Home</a>
+            <a th:href="@{/}" class="text-white hover:underline" th:text="#{nav.home}">Home</a>
             <a th:href="@{/web/usuarios}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.users}">Usuários</a>
             <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.treatments}">Tratamentos</a>
             <a th:href="@{/web/consultas}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Consultas</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline font-bold"
-               sec:authorize="isAuthenticated()">Lembretes</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
         </nav>
     </div>
 </header>
 
 <main class="container mx-auto px-4 py-8">
-
     <div class="bg-white p-6 rounded-lg shadow-md">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-semibold">Lista de Lembretes</h2>
-            <a th:href="@{/web/lembretes/novo}" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
+            <h2 class="text-2xl font-semibold" th:text="#{reminders.list.title}">Lista de Lembretes</h2>
+            <a th:href="@{/web/lembretes/novo}" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded" th:text="#{reminders.button.new}">
                 Novo Lembrete
             </a>
         </div>
@@ -49,28 +62,28 @@
             <table class="min-w-full bg-white border border-gray-300">
                 <thead>
                 <tr class="bg-gray-200">
-                    <th class="py-2 px-4 border">Texto</th>
-                    <th class="py-2 px-4 border">Horário</th>
-                    <th class="py-2 px-4 border">Usuário</th>
-                    <th class="py-2 px-4 border">Ações</th>
+                    <th class="py-2 px-4 border" th:text="#{reminders.table.text}">Texto</th>
+                    <th class="py-2 px-4 border" th:text="#{reminders.table.time}">Horário</th>
+                    <th class="py-2 px-4 border" th:text="#{reminders.table.user}">Usuário</th>
+                    <th class="py-2 px-4 border" th:text="#{reminders.table.actions}">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="lembrete : ${lembretes}" th:if="${lembrete != null}" class="hover:bg-gray-50">
-                    <td class="py-2 px-4 border" th:text="${lembrete.texto} ?: 'Sem texto'"></td>
+                    <td class="py-2 px-4 border" th:text="${lembrete.texto} ?: #{reminders.default.text}"></td>
                     <td class="py-2 px-4 border"
-                        th:text="${lembrete.horario != null} ? ${#temporals.format(lembrete.horario, 'HH:mm')} : 'Sem horário'"></td>
-                    <td class="py-2 px-4 border" th:text="${lembrete.usuarioNome} ?: 'Sem usuário'"></td>
+                        th:text="${lembrete.horario != null} ? ${#temporals.format(lembrete.horario, 'HH:mm')} : #{reminders.default.time}"></td>
+                    <td class="py-2 px-4 border" th:text="${lembrete.usuarioNome} ?: #{reminders.default.user}"></td>
                     <td class="py-2 px-4 border">
                         <a th:href="@{/web/lembretes/editar/{id}(id=${lembrete.id})}"
-                           class="text-blue-500 hover:underline mr-2">Editar</a>
+                           class="text-blue-500 hover:underline mr-2" th:text="#{reminders.button.edit}">Editar</a>
                         <a th:href="@{/web/lembretes/deletar/{id}(id=${lembrete.id})}"
-                           onclick="return confirm('Tem certeza que deseja deletar este lembrete?')"
-                           class="text-red-500 hover:underline">Deletar</a>
+                           th:onclick="'return confirm(\'' + #{reminders.delete.confirm} + '\')'"
+                           class="text-red-500 hover:underline" th:text="#{reminders.button.delete}">Deletar</a>
                     </td>
                 </tr>
                 <tr th:if="${lembretes == null or lembretes.empty}">
-                    <td colspan="4" class="py-4 px-4 border text-center text-gray-500">
+                    <td colspan="4" class="py-4 px-4 border text-center text-gray-500" th:text="#{reminders.table.no.reminders}">
                         Nenhum lembrete encontrado
                     </td>
                 </tr>

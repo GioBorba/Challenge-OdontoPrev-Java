@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${lembrete.id} ? 'Editar Lembrete' : 'Novo Lembrete'"></title>
+    <title th:text="${lembrete.id} ? #{reminders.edit.title} : #{reminders.new.title}">Editar/Novo Lembrete</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
-                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
-                        Sair
-                    </button>
-                </form>
+            <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4">
+                <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
+                    <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded" th:text="#{nav.logout}">
+                            Sair
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <nav class="mt-4 flex justify-center space-x-4">
-            <a th:href="@{/}" class="text-white hover:underline">Home</a>
+            <a th:href="@{/}" class="text-white hover:underline" th:text="#{nav.home}">Home</a>
             <a th:href="@{/web/usuarios}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Usuários</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.users}">Usuários</a>
             <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
-               sec:authorize="hasAuthority('ROLE_ADMIN')">Tratamentos</a>
+               sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.treatments}">Tratamentos</a>
             <a th:href="@{/web/consultas}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Consultas</a>
-            <a th:href="@{/web/lembretes}" class="text-white hover:underline"
-               sec:authorize="isAuthenticated()">Lembretes</a>
+               sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
+            <a th:href="@{/web/lembretes}" class="text-white hover:underline font-bold"
+               sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
         </nav>
     </div>
 </header>
 
 <main class="container mx-auto px-4 py-8">
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4" th:text="${lembrete.id} ? 'Editar Lembrete' : 'Novo Lembrete'"></h2>
+        <h2 class="text-2xl font-semibold mb-4" th:text="${lembrete.id} ? #{reminders.edit.title} : #{reminders.new.title}">Editar/Novo Lembrete</h2>
 
         <!-- Mensagens de feedback -->
         <div th:if="${successMessage}" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
@@ -53,22 +56,22 @@
             <input type="hidden" th:field="*{usuarioId}" th:unless="${usuarios != null}" />
 
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="texto">Texto *</label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="texto" th:text="#{reminders.form.text}">Texto *</label>
                 <input type="text" th:field="*{texto}" id="texto" required
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="horario">Horário *</label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="horario" th:text="#{reminders.form.time}">Horário *</label>
                 <input type="time" th:field="*{horario}" id="horario" required
                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <!-- Select de usuário (apenas para admin) -->
             <div class="mb-4" th:if="${usuarios != null}">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Paciente *</label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" th:text="#{reminders.form.user}">Paciente *</label>
                 <select th:field="*{usuarioId}" class="w-full px-4 py-2 border rounded" required>
-                    <option value="">Selecione um paciente</option>
+                    <option value="" th:text="#{reminders.form.select.user}">Selecione um paciente</option>
                     <option th:each="usuario : ${usuarios}"
                             th:value="${usuario.id}"
                             th:text="${usuario.nome}"
@@ -78,20 +81,18 @@
 
             <!-- Mostra o nome do usuário para usuários comuns -->
             <div class="mb-4" th:unless="${usuarios != null}">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Usuário</label>
+                <label class="block text-gray-700 text-sm font-bold mb-2" th:text="#{reminders.form.user}">Usuário</label>
                 <p class="w-full px-4 py-2 border rounded bg-gray-100"
                    th:text="${@usuarioService.getUsuarioById(lembrete.usuarioId).get().getNome()}"></p>
             </div>
 
-
             <div class="flex justify-between">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    <span th:text="${lembrete != null and lembrete.id != null} ? 'Atualizar' : 'Salvar'"></span>
+                    <span th:text="${lembrete != null and lembrete.id != null} ? #{reminders.button.update} : #{reminders.button.save}">Salvar/Atualizar</span>
                 </button>
-                <a th:href="@{/web/lembretes}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</a>
+                <a th:href="@{/web/lembretes}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" th:text="#{reminders.button.cancel}">Cancelar</a>
             </div>
         </form>
-
     </div>
 </main>
 </body>

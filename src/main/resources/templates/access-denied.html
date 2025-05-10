@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Acesso Negado</title>
+    <title th:text="#{app.name} + ' - ' + #{access.denied.title}">OdontoPrev - Acesso Negado</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 <div class="min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md text-center">
-        <h1 class="text-2xl font-bold text-red-600 mb-4">Acesso Negado</h1>
-        <p class="mb-4">Você não tem permissão para acessar esta página.</p>
-        <a th:href="@{/}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <h1 class="text-2xl font-bold text-red-600 mb-4" th:text="#{access.denied.title}">Acesso Negado</h1>
+        <p class="mb-4" th:text="#{access.denied.message}">Você não tem permissão para acessar esta página.</p>
+        <a th:href="@{/}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" th:text="#{access.denied.back}">
             Voltar para a página inicial
         </a>
     </div>

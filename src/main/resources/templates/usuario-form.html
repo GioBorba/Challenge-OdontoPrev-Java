@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${usuario.id} ? 'Editar Usuário' : 'Novo Usuário'"></title>
+    <title th:text="#{app.name} + ' - ' + (${usuario.id} ? #{users.form.edit.title} : #{users.form.new.title})">OdontoPrev - Usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Challenge Java - OdontoPrev</h1>
-            <div th:if="${successMessage}" class="mt-4 p-3 bg-green-100 text-green-700 rounded">
-                <span th:text="${successMessage}"></span>
-            </div>
-            <div class="flex items-center space-x-4" sec:authorize="isAuthenticated()">
-                <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded">
-                        Sair
-                    </button>
-                </form>
+            <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
+            <div class="flex items-center space-x-4">
+                <div th:if="${successMessage}" class="mt-4 p-3 bg-green-100 text-green-700 rounded">
+                    <span th:text="${successMessage}"></span>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
+                    <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded" th:text="#{nav.logout}">
+                            Sair
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -29,40 +31,38 @@
 
 <main class="container mx-auto px-4 py-8">
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4" th:text="${usuario.id} ? 'Editar Usuário' : 'Novo Usuário'"></h2>
+        <h2 class="text-2xl font-semibold mb-4" th:text="${usuario.id} ? #{users.form.edit.title} : #{users.form.new.title}"></h2>
         <form th:action="@{/web/usuarios/salvar}" th:object="${usuario}" method="post">
             <input type="hidden" th:field="*{id}" />
             <div class="mb-4">
-                <label class="block text-gray-700">Nome:</label>
+                <label class="block text-gray-700" th:text="#{users.form.name}">Nome:</label>
                 <input type="text" th:field="*{nome}" class="w-full px-4 py-2 border rounded" required />
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">Email:</label>
+                <label class="block text-gray-700" th:text="#{users.form.email}">Email:</label>
                 <input type="email" th:field="*{email}" class="w-full px-4 py-2 border rounded" required />
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">Senha:</label>
+                <label class="block text-gray-700" th:text="#{users.form.password}">Senha:</label>
                 <input type="password" th:field="*{senha}" class="w-full px-4 py-2 border rounded" required />
             </div>
 
             <div th:unless="${fromLogin}">
-                <label class="block text-gray-700">Tipo de Usuário:</label>
+                <label class="block text-gray-700" th:text="#{users.form.role}">Tipo de Usuário:</label>
                 <select th:field="*{role}" class="w-full px-4 py-2 border rounded" required>
-                    <option value="USER">Usuário Comum</option>
-                    <option value="ADMIN">Administrador</option>
+                    <option value="USER" th:text="#{users.role.user}">Usuário Comum</option>
+                    <option value="ADMIN" th:text="#{users.role.admin}">Administrador</option>
                 </select>
             </div>
-
 
             <input th:if="${fromLogin}" type="hidden" th:field="*{role}" th:value="USER">
 
             <div class="flex justify-between">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
-                <a th:href="@{/web/usuarios}" class="bg-gray-500 text-white px-4 py-2 rounded">Cancelar</a>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" th:text="#{users.form.save}">Salvar</button>
+                <a th:href="@{/web/usuarios}" class="bg-gray-500 text-white px-4 py-2 rounded" th:text="#{users.form.cancel}">Cancelar</a>
             </div>
         </form>
     </div>
 </main>
-
 </body>
 </html>
