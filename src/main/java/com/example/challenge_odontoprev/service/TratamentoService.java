@@ -1,6 +1,7 @@
 package com.example.challenge_odontoprev.service;
 
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
+import com.example.challenge_odontoprev.messaging.TratamentoProducer;
 import com.example.challenge_odontoprev.model.Tratamento;
 import com.example.challenge_odontoprev.repository.TratamentoRepository;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class TratamentoService {
     private final TratamentoRepository tratamentoRepository;
+    private final TratamentoProducer tratamentoProducer;
 
     public TratamentoDTO saveTratamento(TratamentoDTO tratamentoDTO) {
         Tratamento tratamento;
@@ -27,6 +29,7 @@ public class TratamentoService {
             tratamento.setNome(tratamentoDTO.getNome());
         }
         Tratamento savedTratamento = tratamentoRepository.save(tratamento);
+        tratamentoProducer.sendMessage("Novo Tratamento registrado: " + savedTratamento.getNome());
         return toDto(savedTratamento);
     }
 

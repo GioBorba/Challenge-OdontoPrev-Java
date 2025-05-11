@@ -3,12 +3,14 @@ package com.example.challenge_odontoprev.controller.web;
 import com.example.challenge_odontoprev.dto.ConsultaDTO;
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
 import com.example.challenge_odontoprev.dto.UsuarioDTO;
+import com.example.challenge_odontoprev.messaging.ConsultaProducer;
 import com.example.challenge_odontoprev.model.Role;
 import com.example.challenge_odontoprev.security.UsuarioDetails;
 import com.example.challenge_odontoprev.service.ConsultaService;
 import com.example.challenge_odontoprev.service.TratamentoService;
 import com.example.challenge_odontoprev.service.UsuarioService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ public class ConsultaWebController {
     private final ConsultaService consultaService;
     private final UsuarioService usuarioService;
     private final TratamentoService tratamentoService;
+
 
     @GetMapping
     public String listarConsultas(Model model,
@@ -82,6 +85,7 @@ public class ConsultaWebController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar consulta: " + e.getMessage());
         }
+
 
         return "redirect:/web/consultas";
     }

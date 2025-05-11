@@ -2,6 +2,7 @@ package com.example.challenge_odontoprev.service;
 
 import com.example.challenge_odontoprev.dto.ConsultaDTO;
 import com.example.challenge_odontoprev.dto.TratamentoDTO;
+import com.example.challenge_odontoprev.messaging.ConsultaProducer;
 import com.example.challenge_odontoprev.model.Consulta;
 import com.example.challenge_odontoprev.model.Tratamento;
 import com.example.challenge_odontoprev.model.Usuario;
@@ -9,6 +10,7 @@ import com.example.challenge_odontoprev.repository.ConsultaRepository;
 import com.example.challenge_odontoprev.repository.TratamentoRepository;
 import com.example.challenge_odontoprev.repository.UsuarioRepository; // Adicionado para buscar o usuário
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +26,15 @@ public class ConsultaService {
     private final UsuarioRepository usuarioRepository;
     private final TratamentoRepository tratamentoRepository;
 
+    @Autowired
+    private ConsultaProducer consultaProducer;
+
+
     public ConsultaDTO saveConsulta(ConsultaDTO consultaDTO) {
         Consulta consulta = toEntity(consultaDTO);
         Consulta savedConsulta = consultaRepository.save(consulta);
+        consultaProducer.enviarMensagem("Consulta registrada para o paciente: " + savedConsulta.getUsuario().getNome());
+
         return toDto(savedConsulta);
     }
 
@@ -55,6 +63,7 @@ public class ConsultaService {
         dto.setId(consulta.getId());
         dto.setNome(consulta.getNome());
         dto.setData(consulta.getData());
+        dto.setUsuarioNome(consulta.getUsuario().getNome());
 
         List<TratamentoDTO> tratamentoDTOs = consulta.getTratamentos().stream()
                 .map(this::toTratamentoDto)

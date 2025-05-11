@@ -1,6 +1,7 @@
 package com.example.challenge_odontoprev.service;
 
 import com.example.challenge_odontoprev.dto.LembreteDTO;
+import com.example.challenge_odontoprev.messaging.LembreteProducer;
 import com.example.challenge_odontoprev.model.Lembrete;
 import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.repository.LembreteRepository;
@@ -22,6 +23,8 @@ public class LembreteService {
     private final LembreteRepository lembreteRepository;
     private final UsuarioRepository usuarioRepository;
 
+    private final LembreteProducer lembreteProducer;
+
     // Salva um novo lembrete
     public LembreteDTO saveLembrete(LembreteDTO lembreteDTO) {
         Usuario usuario = usuarioRepository.findById(lembreteDTO.getUsuarioId())
@@ -40,6 +43,7 @@ public class LembreteService {
         lembrete.setUsuario(usuario);
 
         Lembrete savedLembrete = lembreteRepository.save(lembrete);
+        lembreteProducer.sendMessage("Lembrete criado por: " + savedLembrete.getUsuario().getNome());
 
         return toDto(savedLembrete);
     }

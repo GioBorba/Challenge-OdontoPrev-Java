@@ -35,6 +35,13 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- Mensageria RabbitMQ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
+
 		<!-- Actuatuor -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

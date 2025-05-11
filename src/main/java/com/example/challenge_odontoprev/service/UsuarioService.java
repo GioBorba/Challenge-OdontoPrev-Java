@@ -1,6 +1,7 @@
 package com.example.challenge_odontoprev.service;
 
 import com.example.challenge_odontoprev.dto.UsuarioDTO;
+import com.example.challenge_odontoprev.messaging.UsuarioProducer;
 import com.example.challenge_odontoprev.model.Role;
 import com.example.challenge_odontoprev.model.Usuario;
 import com.example.challenge_odontoprev.repository.UsuarioRepository;
@@ -24,6 +25,8 @@ import java.util.stream.Collectors;
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final UsuarioProducer usuarioProducer;
 
     public UsuarioDTO saveUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario;
@@ -49,6 +52,7 @@ public class UsuarioService {
             usuario.setRole(usuarioDTO.getRole() != null ? usuarioDTO.getRole() : Role.USER); // Default para USER
         }
         Usuario savedUsuario = usuarioRepository.save(usuario);
+        usuarioProducer.sendMessage("Novo usuário criado: " + savedUsuario.getNome() );
         return toDto(savedUsuario);
     }
 
