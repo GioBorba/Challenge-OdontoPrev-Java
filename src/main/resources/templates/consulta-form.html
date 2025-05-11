@@ -33,6 +33,8 @@
                sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline"
                sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
+            <a th:href="@{/chatai}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()" th:text="#{nav.assistant}">Assistente AI</a>
         </nav>
     </div>
 </header>

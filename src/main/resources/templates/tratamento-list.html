@@ -13,6 +13,18 @@
         <div class="flex justify-between items-center">
             <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
             <div class="flex items-center space-x-4">
+                <div class="flex space-x-2 mr-4">
+                    <a th:href="@{/web/usuarios(lang=pt_BR)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'pt' ? 'bg-blue-800' : ''}">
+                        PT
+                    </a>
+                    <a th:href="@{/web/usuarios(lang=en)}"
+                       class="px-2 py-1 rounded hover:bg-blue-700"
+                       th:classappend="${#locale.language == 'en' ? 'bg-blue-800' : ''}">
+                        EN
+                    </a>
+                </div>
                 <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
                     <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
                     <form th:action="@{/logout}" method="post">
@@ -33,6 +45,8 @@
                sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline"
                sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
+            <a th:href="@{/chatai}" class="text-white hover:underline"
+               sec:authorize="isAuthenticated()" th:text="#{nav.assistant}">Assistente AI</a>
         </nav>
     </div>
 </header>

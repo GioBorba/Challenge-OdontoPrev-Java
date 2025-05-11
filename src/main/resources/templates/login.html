@@ -13,6 +13,18 @@
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-blue-600" th:text="#{app.header.title}">Challenge Java</h1>
             <h2 class="text-xl text-gray-700" th:text="#{app.header.subtitle}">OdontoPrev</h2>
+            <div class="flex space-x-2 mr-4">
+                <a th:href="@{/login(lang=pt_BR)}"
+                   class="px-2 py-1 rounded hover:bg-blue-700"
+                   th:classappend="${#locale.language == 'pt' ? 'bg-blue-800' : ''}">
+                    PT
+                </a>
+                <a th:href="@{/login(lang=en)}"
+                   class="px-2 py-1 rounded hover:bg-blue-700"
+                   th:classappend="${#locale.language == 'en' ? 'bg-blue-800' : ''}">
+                    EN
+                </a>
+            </div>
         </div>
 
         <form th:action="@{/login}" method="post">

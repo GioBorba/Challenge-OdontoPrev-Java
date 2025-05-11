@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="#{app.name} + ' - ' + (${tratamento.id} ? #{treatments.form.edit.title} : #{treatments.form.new.title})">OdontoPrev - Tratamento</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title th:text="#{app.title}">Odonto Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 min-h-screen">
 <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
             <h1 class="text-3xl font-bold" th:text="#{app.header.title} + ' - ' + #{app.name}">Challenge Java - OdontoPrev</h1>
             <div class="flex items-center space-x-4">
+                <!-- Seletor de Idiomas -->
                 <div class="flex space-x-2 mr-4">
-                    <a th:href="@{/web/tratamentos/+(lang=pt_BR)}"
+                    <a th:href="@{/chatai(lang=pt_BR)}"
                        class="px-2 py-1 rounded hover:bg-blue-700"
                        th:classappend="${#locale.language == 'pt' ? 'bg-blue-800' : ''}">
                         PT
                     </a>
-                    <a th:href="@{/web/tratamentos/+(lang=en)}"
+                    <a th:href="@{/chatai(lang=en)}"
                        class="px-2 py-1 rounded hover:bg-blue-700"
                        th:classappend="${#locale.language == 'en' ? 'bg-blue-800' : ''}">
                         EN
                     </a>
                 </div>
+
                 <div sec:authorize="isAuthenticated()" class="flex items-center space-x-4">
                     <span class="font-medium" sec:authentication="principal.usuario.nome"></span>
                     <form th:action="@{/logout}" method="post">
@@ -39,33 +41,37 @@
             <a th:href="@{/}" class="text-white hover:underline" th:text="#{nav.home}">Home</a>
             <a th:href="@{/web/usuarios}" class="text-white hover:underline"
                sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.users}">Usuários</a>
-            <a th:href="@{/web/tratamentos}" class="text-white hover:underline font-bold"
+            <a th:href="@{/web/tratamentos}" class="text-white hover:underline"
                sec:authorize="hasAuthority('ROLE_ADMIN')" th:text="#{nav.treatments}">Tratamentos</a>
             <a th:href="@{/web/consultas}" class="text-white hover:underline"
                sec:authorize="isAuthenticated()" th:text="#{nav.appointments}">Consultas</a>
             <a th:href="@{/web/lembretes}" class="text-white hover:underline"
                sec:authorize="isAuthenticated()" th:text="#{nav.reminders}">Lembretes</a>
-            <a th:href="@{/chatai}" class="text-white hover:underline"
+            <a th:href="@{/chatai}" class="text-white hover:underline font-bold"
                sec:authorize="isAuthenticated()" th:text="#{nav.assistant}">Assistente AI</a>
         </nav>
     </div>
 </header>
 
-<main class="container mx-auto px-4 py-8">
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4" th:text="${tratamento.id} ? #{treatments.form.edit.title} : #{treatments.form.new.title}"></h2>
-        <form th:action="@{/web/tratamentos/salvar}" th:object="${tratamento}" method="post">
-            <input type="hidden" th:field="*{id}" />
-            <div class="mb-4">
-                <label class="block text-gray-700" th:text="#{treatments.table.name}">Nome:</label>
-                <input type="text" th:field="*{nome}" class="w-full px-4 py-2 border rounded" required />
-            </div>
-            <div class="flex justify-between">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" th:text="#{treatments.form.save}">Salvar</button>
-                <a th:href="@{/web/tratamentos}" class="bg-gray-500 text-white px-4 py-2 rounded" th:text="#{treatments.form.cancel}">Cancelar</a>
-            </div>
-        </form>
+    <!-- Formulário de chat -->
+    <form method="post" th:action="@{/chatai}" class="mb-8">
+        <div class="mb-4">
+                <textarea name="question" th:value="${question}"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          rows="5" th:placeholder="#{app.placeholder}"></textarea>
+        </div>
+        <button type="submit"
+                class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                th:text="#{app.submit}">Submit</button>
+    </form>
+
+    <!-- Resposta -->
+    <div th:if="${answer}" class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4" th:text="#{app.response}">Response:</h3>
+        <div class="prose max-w-none text-gray-700" th:text="${answer}"></div>
     </div>
-</main>
+
+
+</div>
 </body>
 </html>
