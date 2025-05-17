@@ -19,20 +19,74 @@
   - DevOps Tools and Cloud Computing
 
 
-## Instruções para Rodar a Aplicação
+## 🚀 Como executar o projeto localmente
 
-Para executar a aplicação, siga os passos abaixo:
+### Pré-requisitos
 
-1. **Clone o repositório**
-2. **Navegue até a pasta do projeto**
-3. **Execute o projeto**: 
-   1. Abra o IntelliJ e importe o projeto como um projeto Maven.
-   2. Execute a aplicação (ChallengeOdontoprevApplication)
+- Java 17+
+- Maven
+- Docker Desktop (instalado e em execução)
+- IDE como IntelliJ ou VSCode
+
+---
+
+### 1. Iniciar o Docker e o RabbitMQ
+
+Certifique-se de que o Docker Desktop está **aberto e em execução**.
+
+Depois, execute o seguinte comando no terminal (CMD):
+
+```bash
+docker run -d --hostname rabbitmq --name rabbitmq-container -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
+#### A interface de gerenciamento estará acessível em:
+👉 http://localhost:15672
+- Usuário padrão: guest
+- Senha padrão: guest
+
+### 2. Configurar o `application.properties`
+
+- Edite o arquivo `src/main/resources/application.properties` com as seguintes informações:
+
+#### ✅ API Key da OpenAI e Banco de Dados
+
+```properties
+spring.ai.openai.api-key=sk-sua-chave-aqui
+spring.ai.openai.model=gpt-3.5-turbo
+
+spring.datasource.url=jdbc:oracle:thin:@//host:porta/serviço
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.jpa.database-platform=org.hibernate.dialect.Oracle12cDialect
+spring.jpa.hibernate.ddl-auto=update
+```
+- Na configuração do banco de dados você pode optar por colocar seu login do Oracle ou utilizar o H2 localmente.
+
+---
+
+
+## Sprint 4
+### Este projeto foi desenvolvido como parte do desafio acadêmico "Challenge OdontoPrev", com foco na criação de uma aplicação backend em Java usando o ecossistema Spring Boot. A aplicação se conecta a uma base de dados, integra mensageria com RabbitMQ, oferece recursos de inteligência artificial com Spring AI, inclui segurança com Spring Security e possui suporte para autenticação, internacionalização e monitoramento.
+
+---
+
+## Vídeo do projeto: https://www.youtube.com/watch?v=Xs5JSb0sboM
+
+---
+
+### ✅ Funcionalidades implementadas
+
+- **Autenticação e Autorização** com Spring Security, incluindo gestão de perfis (roles);
+- **Internacionalização (i18n)** com suporte para português e inglês;
+- **Mensageria com RabbitMQ** (produtores e consumidores configurados);
+- **Monitoramento com Spring Boot Actuator**;
+- **Integração com OpenAI via Spring AI**, utilizando prompt customizado para respostas odontológicas.
+
 
 
 ## Sprint 3
-### Sobre o projeto
-- O projeto consiste em um sistema de gerenciamento de tratamentos e consultas médicas, com funcionalidades para cadastro de usuários, agendamento de consultas, lembretes de tratamentos e auditoria de operações no banco de dados. O sistema foi desenvolvido utilizando Java com Spring Boot para o backend, Oracle Database para o banco de dados e Thymeleaf para a camada de visualização.
 
 ### Endpoints para verificação Web
 - GET /
@@ -47,7 +101,6 @@ Tratamentos
   1. Lista todos os tratamentos cadastrados.
 
 ## Link: https://www.youtube.com/watch?v=XS3RI5sCbp4
-
 
 
 ---
